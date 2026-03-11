@@ -1,53 +1,52 @@
-# P4 — Laboratorios de Programación 4
+# P4 — Programación 4 Lab
 
-> Proyecto universitario de Programación 4 (Grupo 43) que abarca múltiples laboratorios progresivos en C++, aplicando principios de diseño orientado a objetos, patrones de diseño y buenas prácticas de ingeniería de software.
-
----
-
-## Descripción
-
-Este repositorio contiene el conjunto de entregas del curso **Programación 4**, donde se modelan y desarrollan sistemas de gestión aplicando conceptos avanzados de OOP en C++. El proyecto se divide en dos dominios principales:
-
-### Sistema de Gestión de Publicaciones Académicas (Lab 0)
-
-Sistema que modela publicaciones académicas e investigadores. Permite crear, listar, asociar, filtrar y eliminar publicaciones con manejo correcto de memoria.
-
-- **Publicaciones:** Artículos de revista, libros y páginas web, cada uno con atributos específicos.
-- **Investigadores:** Identificados por ORCID, vinculados a publicaciones mediante relación muchos-a-muchos.
-- **Operaciones:** Creación con fecha, asociación investigador–publicación, búsqueda por palabra clave, filtrado por rango de fechas y eliminación en cascada.
-
-### Sistema de Gestión Inmobiliaria (Lab 4)
-
-Aplicación de consola interactiva para la gestión de propiedades inmobiliarias, usuarios y publicaciones de venta/alquiler.
-
-- **Usuarios:** Clientes, propietarios e inmobiliarias, cada uno con roles y permisos diferenciados.
-- **Inmuebles:** Casas y apartamentos con atributos específicos (tipo de techo, piso, ascensor, gastos comunes, etc.).
-- **Publicaciones:** Listados de venta o alquiler vinculados a inmuebles, con estados activos/inactivos.
-- **Notificaciones:** Sistema de suscripción que alerta a clientes y propietarios sobre cambios en publicaciones.
-- **Administración:** Relación inmobiliaria–inmueble para gestión delegada de propiedades.
+> University project for Programación 4 covering multiple progressive labs in C++, applying object-oriented design principles, design patterns, and software engineering best practices.
 
 ---
 
-## Patrones de Diseño Implementados
+## Description
 
-| Patrón | Aplicación |
+This repository contains the set of submissions for the **Programación 4** course, where management systems are modeled and developed using advanced OOP concepts in C++. The project is divided into two main domains:
+
+### Academic Publications Management System (Lab 0)
+
+System that models academic publications and researchers. Allows creating, listing, associating, filtering, and deleting publications with proper memory management.
+
+- **Publications:** Journal articles, books, and web pages, each with specific attributes.
+- **Researchers:** Identified by ORCID, linked to publications through a many-to-many relationship.
+- **Operations:** Creation with date, researcher–publication association, keyword search, date range filtering, and cascading deletion.
+
+### Real Estate Management System (Lab 4)
+
+Interactive console application for managing real estate properties, users, and sale/rental listings.
+
+- **Users:** Clients, owners, and real estate agencies, each with distinct roles and permissions.
+- **Properties:** Houses and apartments with specific attributes (roof type, floor, elevator, common expenses, etc.).
+- **Listings:** Sale or rental listings linked to properties, with active/inactive states.
+- **Notifications:** Subscription system that alerts clients and owners about changes in listings.
+- **Administration:** Real estate–property relationship for delegated property management.
+
+---
+
+## Implemented Design Patterns
+
+| Pattern | Application |
 |---|---|
-| **Singleton** | `Factory`, controladores (`ControladorInmuebles`, `ControladorUsuarios`, `ControladorFechaActual`) — instancia única con `getInstance()` |
-| **Abstract Factory** | `Factory` retorna interfaces (`IControladorX`), desacoplando la creación de controladores concretos |
-| **Observer** | `Inmobiliaria` actúa como sujeto observable; `Cliente` y `Propietario` implementan `ISuscrito` y reciben notificaciones |
-| **DTO (Data Transfer Object)** | Clases `DT*` (`DTInmueble`, `DTUsuario`, `DTPublicacion`, etc.) para transferir datos entre capas sin exponer el modelo |
-| **Controller (GRASP)** | Controladores que encapsulan la lógica de casos de uso detrás de interfaces |
-| **Polimorfismo / Strategy** | Jerarquías `Publicacion`, `Inmueble → Casa/Apartamento` y `Usuario → Cliente/Propietario/Inmobiliaria` con métodos virtuales |
+| **Singleton** | `Factory`, controllers (`ControladorInmuebles`, `ControladorUsuarios`, `ControladorFechaActual`) — single instance with `getInstance()` |
+| **Abstract Factory** | `Factory` returns interfaces (`IControladorX`), decoupling the creation of concrete controllers |
+| **Observer** | `Inmobiliaria` acts as observable subject; `Cliente` and `Propietario` implement `ISuscrito` and receive notifications |
+| **DTO (Data Transfer Object)** | `DT*` classes (`DTInmueble`, `DTUsuario`, `DTPublicacion`, etc.) for transferring data between layers without exposing the model |
+| **Controller (GRASP)** | Controllers encapsulate use case logic behind interfaces |
+| **Polymorphism / Strategy** | Hierarchies `Publicacion`, `Inmueble → Casa/Apartamento` and `Usuario → Cliente/Propietario/Inmobiliaria` with virtual methods |
 
----
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 P4-MONITOREO-main/
-├── main.cpp                    # Lab 0 — Publicaciones académicas
+├── main.cpp                    # Lab 0 — Academic publications
 ├── Makefile
-├── include/                    # Headers Lab 0
+├── include/                    # Lab 0 headers
 │   ├── Publicacion.h
 │   ├── ArticuloRevista.h
 │   ├── Libro.h
@@ -55,7 +54,7 @@ P4-MONITOREO-main/
 │   ├── Investigador.h
 │   ├── DTFecha.h
 │   └── DTRefer.h
-├── src/                        # Implementaciones Lab 0
+├── src/                        # Lab 0 implementations
 │   ├── Publicacion.cpp
 │   ├── ArticuloRevista.cpp
 │   ├── Libro.cpp
@@ -63,111 +62,76 @@ P4-MONITOREO-main/
 │   ├── Investigador.cpp
 │   ├── DTFecha.cpp
 │   └── DTRefer.cpp
-├── lab1/                       # Modelo de dominio (Draw.io)
-├── lab2/                       # Modelo de casos de uso (Draw.io)
+├── lab1/                       # Domain model (Draw.io)
+├── lab2/                       # Use case model (Draw.io)
 └── lab4/
-    ├── 43_lab4/                # Sistema inmobiliario — versión principal
-    │   ├── main
-    │   ├── Makefile
-    │   ├── include/            # Headers (usuarios, inmuebles, controladores, DTOs)
-    │   └── src/                # Implementaciones completas
-    └── lab4_2025/              # Sistema inmobiliario — versión refactorizada
-        ├── main.cpp
-        ├── Makefile            # Incluye ejecución con Valgrind
-        ├── include/
-        └── src/
+  ├── 43_lab4/                # Real estate system — main version
+  │   ├── main
+  │   ├── Makefile
+  │   ├── include/            # Headers (users, properties, controllers, DTOs)
+  │   └── src/                # Complete implementations
+  └── lab4_2025/              # Real estate system — refactored version
+    ├── main.cpp
+    ├── Makefile            # Includes execution with Valgrind
+    ├── include/
+    └── src/
 ```
 
 ---
 
-## Tecnologías y Herramientas
 
-- **Lenguaje:** C++ (C++98 / C++11)
-- **Compilador:** g++
+## Technologies and Tools
+
+- **Language:** C++ (C++98 / C++11)
+- **Compiler:** g++
 - **Build system:** GNU Make
-- **Detección de memory leaks:** Valgrind
-- **Contenedores STL:** `map`, `set`, `list`, `vector`, `string`
-- **Modelado UML:** Draw.io (diagramas de dominio y casos de uso)
+- **Memory leak detection:** Valgrind
+- **STL containers:** `map`, `set`, `list`, `vector`, `string`
+- **UML modeling:** Draw.io (domain and use case diagrams)
 
 ---
 
-## Compilación y Ejecución
+## Simplified Class Diagram
 
-### Lab 0 — Publicaciones Académicas
-
-```bash
-make          # Compila el ejecutable 'lab0'
-./lab0        # Ejecuta las partes a–k de forma secuencial
-make clean    # Limpia archivos generados
-```
-
-### Lab 4 — Sistema Inmobiliario
-
-```bash
-cd lab4/43_lab4
-make          # Compila el ejecutable 'main'
-./main        # Aplicación interactiva por menú de consola
-make clean    # Limpia archivos generados
-```
-
-### Lab 4 (2025) — Versión Refactorizada
-
-```bash
-cd lab4/lab4_2025
-make          # Compila y ejecuta análisis con Valgrind
-./main        # Aplicación interactiva por menú de consola
-make clean    # Limpia archivos generados
-```
-
----
-
-## Diagrama de Clases Simplificado
-
-### Dominio de Publicaciones (Lab 0)
+### Publications Domain (Lab 0)
 
 ```
-Publicacion (abstracta)
+Publicacion (abstract)
   ├── ArticuloRevista
   ├── Libro
   └── PaginaWeb
 
-Investigador ◆——▷ Publicacion  (muchos a muchos)
+Investigador ◆——▷ Publicacion  (many-to-many)
 ```
 
-### Dominio Inmobiliario (Lab 4)
+### Real Estate Domain (Lab 4)
 
 ```
-Usuario (abstracta)
+Usuario (abstract)
   ├── Cliente         ──implements──▷ ISuscrito
   ├── Propietario     ──implements──▷ ISuscrito
-  └── Inmobiliaria    ──notifica──▷ ISuscrito (Observer)
+  └── Inmobiliaria    ──notifies──▷ ISuscrito (Observer)
 
-Inmueble (abstracta)
+Inmueble (abstract)
   ├── Casa
   └── Apartamento
 
-AdministraPropiedad ──vincula──▷ Inmobiliaria ↔ Inmueble
-Publicacion ──pertenece──▷ AdministraPropiedad
+AdministraPropiedad ──links──▷ Inmobiliaria ↔ Inmueble
+Publicacion ──belongs to──▷ AdministraPropiedad
 ```
 
 ---
 
-## Conceptos Clave Demostrados
+## Key Concepts Demonstrated
 
-- Diseño orientado a objetos con herencia, polimorfismo y clases abstractas
-- Separación de responsabilidades con controladores e interfaces
-- Manejo de memoria dinámica en C++ con `new`/`delete` y validación con Valgrind
-- Patrones de diseño GoF (Singleton, Observer, Abstract Factory)
-- Patrones GRASP (Controller, Creator, Expert)
-- Uso de DTOs para transferencia segura de datos entre capas
-- Modelado UML previo a la implementación (diagramas de dominio y casos de uso)
-
----
-
-## Autor
-
-**Agustin Camara** — Grupo 43, Programación 4
+- Object-oriented design with inheritance, polymorphism, and abstract classes
+- Separation of responsibilities with controllers and interfaces
+- Dynamic memory management in C++ with `new`/`delete` and validation using Valgrind
+- GoF design patterns (Singleton, Observer, Abstract Factory)
+- GRASP patterns (Controller, Creator, Expert)
+- Use of DTOs for safe data transfer between layers
+- UML modeling prior to implementation (domain and use case diagrams)
 
 ---
 
-*Proyecto académico desarrollado como parte del curso de Programación 4.*
+*Academic project developed as part of the Programming 4 course.*
