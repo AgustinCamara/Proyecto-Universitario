@@ -134,4 +134,5 @@ Publicacion ──belongs to──▷ AdministraPropiedad
 
 ---
 
-*Academic project developed as part of the Programming 4 course.*
+
+*Academic project developed as part of the Programación 4 course.*
